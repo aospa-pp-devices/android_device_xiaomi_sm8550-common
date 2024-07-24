@@ -20,6 +20,7 @@ import com.xiaomi.settings.display.ColorModeService;
 import com.xiaomi.settings.display.DcDimmingService;
 import com.xiaomi.settings.doze.AodBrightnessService;
 import com.xiaomi.settings.edgesuppression.EdgeSuppressionService;
+import com.xiaomi.settings.thermal.ThermalService;
 import com.xiaomi.settings.touch.TouchOrientationService;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
@@ -49,6 +50,10 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         context.startServiceAsUser(new Intent(context, ColorModeService.class),
                 UserHandle.CURRENT);
         context.startServiceAsUser(new Intent(context, DcDimmingService.class),
+                UserHandle.CURRENT);
+
+        // Thermal
+        context.startServiceAsUser(new Intent(context, ThermalService.class),
                 UserHandle.CURRENT);
 
         // Touchscreen
