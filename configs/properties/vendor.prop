@@ -65,6 +65,11 @@ ro.vendor.nfc.dispatch_optim=1
 ro.vendor.nfc.repair=1
 ro.vendor.se.type=HCE,UICC
 
+# Sensors
+persist.vendor.sensors.debug.hal=0
+persist.vendor.sensors.debug.trace=0
+persist.vendor.sensors.debug.stats=0
+
 # Telephony
 persist.vendor.radio.redir_party_num=0
 ro.vendor.radio.build_profile=u-stable
