@@ -19,6 +19,7 @@ import android.view.Display.HdrCapabilities;
 import com.xiaomi.settings.display.ColorModeService;
 import com.xiaomi.settings.display.DcDimmingService;
 import com.xiaomi.settings.touch.TouchOrientationService;
+import com.xiaomi.settings.touch.TouchPollingRateService;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
 
@@ -47,6 +48,8 @@ public class BootCompletedReceiver extends BroadcastReceiver {
 
         // Touchscreen
         context.startServiceAsUser(new Intent(context, TouchOrientationService.class),
+                UserHandle.CURRENT);
+        context.startServiceAsUser(new Intent(context, TouchPollingRateService.class),
                 UserHandle.CURRENT);
         
         // Override HDR types to enable Dolby Vision
