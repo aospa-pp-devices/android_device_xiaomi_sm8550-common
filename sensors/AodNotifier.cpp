@@ -63,8 +63,6 @@ AodNotifier::~AodNotifier() {
 }
 
 void AodNotifier::pollingFunction() {
-    Result res;
-
     android::base::unique_fd disp_fd_ = android::base::unique_fd(open(DISP_FEATURE_PATH, O_RDWR));
     if (disp_fd_.get() == -1) {
         LOG(ERROR) << "failed to open " << DISP_FEATURE_PATH;
@@ -107,22 +105,19 @@ void AodNotifier::pollingFunction() {
             case MI_DISP_POWER_LP1:
                 FALLTHROUGH_INTENDED;
             case MI_DISP_POWER_LP2:
-                res = mQueue->enableSensor(mSensorHandle, 20000 /* sample period */,
-                                           0 /* latency */);
-                if (res != Result::OK) {
+                if (!mQueue->enableSensor(mSensorHandle, 20000 /* sample period */,
+                                           0 /* latency */).isOk()) {
                     LOG(ERROR) << "failed to enable sensor";
                 }
                 break;
             case MI_DISP_POWER_ON:
-                res = mQueue->disableSensor(mSensorHandle);
-                if (res != Result::OK) {
+                if (!mQueue->disableSensor(mSensorHandle).isOk()) {
                     LOG(ERROR) << "failed to disable sensor";
                 }
                 requestDozeBrightness(disp_fd_.get(), DOZE_TO_NORMAL);
                 break;
             default:
-                res = mQueue->disableSensor(mSensorHandle);
-                if (res != Result::OK) {
+                if (!mQueue->disableSensor(mSensorHandle).isOk()) {
                     LOG(ERROR) << "failed to disable sensor";
                 }
                 break;
