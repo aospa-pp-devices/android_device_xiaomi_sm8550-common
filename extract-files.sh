@@ -81,6 +81,13 @@ function blob_fixup() {
             [ "$2" = "" ] && return 0
             "${PATCHELF}" --add-needed "libstagefright_foundation-v33.so" "${2}"
             ;;
+        vendor/etc/audio/sku_kalama/audio_effects.xml)
+            [ "$2" = "" ] && return 0
+            sed -i "/v4a_standard_re/d" "${2}"
+            sed -i "/v4a_re/d" "${2}"
+            sed -i "/<libraries>/ a\        <library name=\"v4a_re\" path=\"libv4a_re.so\"\/>" "${2}"
+            sed -i "/<effects>/ a\        <effect name=\"v4a_standard_re\" library=\"v4a_re\" uuid=\"90380da3-8536-4744-a6a3-5731970e640f\"\/>" "${2}"
+            ;;
         vendor/etc/seccomp_policy/atfwd@2.0.policy | vendor/etc/seccomp_policy/modemManager.policy | vendor/etc/seccomp_policy/wfdhdcphalservice.policy)
             [ "$2" = "" ] && return 0
             [ -n "$(tail -c 1 "${2}")" ] && echo >> "${2}"

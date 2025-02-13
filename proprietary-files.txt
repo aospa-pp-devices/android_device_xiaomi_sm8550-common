@@ -159,6 +159,7 @@ vendor/lib64/soundfx/libspatializer.so
 vendor/lib64/soundfx/libswgamedap.so
 vendor/lib64/soundfx/libswspatializer.so
 vendor/lib64/soundfx/libswvqe.so
+vendor/lib64/soundfx/libv4a_re.so|29add59a318370db5c6ceb37de6aed0cefe9ae0e
 vendor/lib64/soundfx/libvisualizer.so
 vendor/lib64/soundfx/libvolumelistener.so
 
