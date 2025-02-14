@@ -870,11 +870,6 @@ vendor/etc/permissions/vendor.qti.hardware.factory.xml
 vendor/lib64/vendor.qti.hardware.factory@1.0.so
 vendor/lib64/vendor.qti.hardware.factory@1.1.so
 
-# Modem Manager
-vendor/bin/modemManager
-vendor/etc/init/modemManager.rc
-vendor/etc/seccomp_policy/modemManager.policy
-
 # Native Public Libraries
 vendor/etc/public.libraries.txt
 
@@ -986,8 +981,6 @@ vendor/etc/init/init.qti.qcv.rc
 vendor/bin/qesdk-manager
 vendor/etc/init/qesdk-manager.rc
 vendor/etc/seccomp_policy/qesdk.policy
-vendor/lib/libqesdk2_0.so
-vendor/lib/libqesdk_manager.so
 vendor/lib64/libqesdk2_0.so
 vendor/lib64/libqesdk_manager.so
 vendor/lib64/vendor.qti.qesdhal@1.0.so
