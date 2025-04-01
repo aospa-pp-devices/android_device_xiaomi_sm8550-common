@@ -6,7 +6,9 @@
 
 #pragma once
 
+#include <memory>
+
 #include <mi_disp.h>
 
 bool readBool(int fd);
-disp_event_resp* parseDispEvent(int fd);
+std::shared_ptr<disp_event_resp> parseDispEvent(int fd);
