@@ -22,9 +22,3 @@ allow parts_app {
 allow parts_app {
   vendor_hal_displayfeature_xiaomi_hwservice
 }:hwservice_manager find;
-
-allow parts_app system_app_data_file:dir create_dir_perms;
-allow parts_app system_app_data_file:{
-  file
-  lnk_file
-} create_file_perms;
