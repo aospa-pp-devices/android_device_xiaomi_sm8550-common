@@ -1,0 +1,19 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.xiaomi.settings.preferences.RadioButtonPreference
+        android:key="thermal_mode_default"
+        android:title="@string/thermal_mode_default" />
+
+    <com.xiaomi.settings.preferences.RadioButtonPreference
+        android:key="thermal_mode_performance"
+        android:title="@string/thermal_mode_performance" />
+
+    <com.xiaomi.settings.preferences.RadioButtonPreference
+        android:key="thermal_mode_gaming"
+        android:title="@string/thermal_mode_gaming" />
+
+    <com.xiaomi.settings.preferences.RadioButtonPreference
+        android:key="thermal_mode_powersave"
+        android:title="@string/thermal_mode_battery_saving" />
+
+</PreferenceScreen>
