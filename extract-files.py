@@ -198,6 +198,11 @@ blob_fixups: blob_fixups_user_type = {
             'libcrypto-v33.so',
         ),
     (
+    'odm/lib64/hw/vendor.xiaomi.hw.touchfeature@1.0-impl.so',
+    'odm/bin/hw/vendor.xiaomi.hw.touchfeature@1.0-service'
+    ): blob_fixup()
+        .replace_needed('vendor.xiaomi.hw.touchfeature@1.0.so', 'vendor.xiaomi.hw.touchfeature@1.0_vendor.so'),
+    (
         'vendor/bin/hw/android.hardware.security.keymint-service-qti',
         'vendor/lib64/libqtikeymint.so',
     ): blob_fixup()
