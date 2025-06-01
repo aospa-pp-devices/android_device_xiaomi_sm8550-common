@@ -214,6 +214,9 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/lib64/hw/audio.primary.kalama.so',
     ): blob_fixup()
         .add_needed('libstagefright_foundation-v33.so'),
+    'vendor/etc/audio/sku_kalama/audio_effects.xml': blob_fixup()
+        .regex_replace('<libraries>', '<libraries>\n        <library name="v4a_re" path="libv4a_re.so"/>')
+        .regex_replace('<effects>', '<effects>\n        <effect name="v4a_standard_re" library="v4a_re" uuid="90380da3-8536-4744-a6a3-5731970e640f"/>'),
     'vendor/etc/seccomp_policy/c2audio.vendor.ext-arm64.policy': blob_fixup()
         .add_line_if_missing('setsockopt: 1'),
     (
