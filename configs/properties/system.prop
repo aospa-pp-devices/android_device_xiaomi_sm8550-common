@@ -1,3 +1,6 @@
+persist.data.df.iwlan_mux=9
+ro.vendor.use_data_netmgrd=true
+
 # Media
 media.aac_51_output_enabled=true
 media.settings.xml=/vendor/etc/media_profiles_kalama.xml
