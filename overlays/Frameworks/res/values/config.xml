@@ -106,4 +106,25 @@
 
     <!-- Type of the udfps long press sensor. Empty if long press is not supported. -->
     <string name="config_dozeUdfpsLongPressSensorType" translatable="false">co.aospa.sensor.udfps</string>
+
+    <!-- Package names to use with vendor iwlan implementation. -->
+    <string name="config_wlan_data_service_package" translatable="false">vendor.qti.iwlan</string>
+    <string name="config_wlan_network_service_package" translatable="false">vendor.qti.iwlan</string>
+    <string name="config_qualified_networks_service_package" translatable="false">vendor.qti.iwlan</string>
+
+    <!-- Flag specifying whether VT is available on device -->
+    <bool name="config_device_vt_available">true</bool>
+
+    <!-- Flag specifying whether VT should be available for carrier: independent of
+         carrier provisioning. If false: hard disabled. If true: then depends on carrier
+         provisioning, availability etc -->
+    <bool name="config_carrier_vt_available">true</bool>
+
+    <!-- Flag specifying whether WFC over IMS is available on device -->
+    <bool name="config_device_wfc_ims_available">true</bool>
+
+    <!-- Flag specifying whether WFC over IMS should be available for carrier: independent of
+         carrier provisioning. If false: hard disabled. If true: then depends on carrier
+         provisioning, availability etc -->
+    <bool name="config_carrier_wfc_ims_available">true</bool>
 </resources>
