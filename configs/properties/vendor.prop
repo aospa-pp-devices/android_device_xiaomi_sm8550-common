@@ -21,7 +21,6 @@ ro.vendor.display.ai_disp.enable=true
 ro.vendor.display.mi_calib.enable=true
 ro.vendor.display.nature_mode.enable=true
 ro.vendor.display.type=oled
-ro.vendor.displayfeature.dump=true
 ro.vendor.fps.switch.default=true
 ro.vendor.fps.switch.thermal=trues
 ro.vendor.hbm_backlight.enable=true
