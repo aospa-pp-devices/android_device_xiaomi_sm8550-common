@@ -191,6 +191,10 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed(
             'libstagefright_foundation.so',
             'libstagefright_foundation-v33.so',
+        )
+        .binary_regex_replace(
+            rb"\x30\x00\x00\xD0\x11\x42\x42\xF9\x10\x02\x12\x91\x20\x02\x1F\xD6",
+            b"\xC0\x03\x5F\xD6\x1F\x20\x03\xD5\x1F\x20\x03\xD5\x1F\x20\x03\xD5",
         ),
     'odm/lib64/libmt@1.3.so': blob_fixup()
         .replace_needed(
