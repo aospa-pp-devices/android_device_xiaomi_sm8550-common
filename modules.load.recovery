@@ -4,7 +4,6 @@ arm_smmu.ko
 bam_dma.ko
 bcl_pmic5.ko
 bcl_soc.ko
-block2mtd.ko
 boot_stats.ko
 bwmon.ko
 c1dcvs_scmi.ko
@@ -15,7 +14,6 @@ cdsp-loader.ko
 cdsprm.ko
 cfg80211.ko
 charger-ulog-glink.ko
-chipreg.ko
 clk-dummy.ko
 clk-qcom.ko
 clk-rpmh.ko
@@ -136,16 +134,11 @@ msm_sharedmem.ko
 msm_show_epoch.ko
 msm_show_resume_irq.ko
 msm_sysstats.ko
-mtd.ko
-mtdblock.ko
-mtdoops.ko
-mtd_blkdevs.ko
 nb7vpq904m.ko
 nvme-core.ko
 nvme.ko
 nvmem_qcom-spmi-sdam.ko
 nvmem_qfprom.ko
-ofpart.ko
 panel_event_notifier.ko
 pci-msm-drv.ko
 pdr_interface.ko
