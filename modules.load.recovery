@@ -55,7 +55,6 @@ ep_pcie_drv.ko
 eud.ko
 frpc-adsprpc.ko
 fsa4480-i2c.ko
-f_fs_ipc_log.ko
 gcc-crow.ko
 gcc-kalama.ko
 gdsc-regulator.ko
@@ -94,7 +93,6 @@ leds-qpnp-vibrator-ldo.ko
 leds-qti-flash.ko
 leds-qti-tri-led.ko
 llcc-qcom.ko
-llcc_perfmon.ko
 lt9611uxc.ko
 mac80211.ko
 max31760_fan.ko
@@ -118,7 +116,6 @@ mhi_dev_netdev.ko
 mhi_dev_satellite.ko
 mhi_dev_uci.ko
 microdump_collector.ko
-minidump.ko
 msm-mmrm.ko
 msm_dma_iommu_mapping.ko
 msm_drm.ko
@@ -202,7 +199,6 @@ qcom_iommu_debug.ko
 qcom_iommu_util.ko
 qcom_ipcc.ko
 qcom_ipc_lite.ko
-qcom_ipc_logging.ko
 qcom_llcc_pmu.ko
 qcom_logbuf_vh.ko
 qcom_lpm.ko
@@ -216,7 +212,6 @@ qcom_smd.ko
 qcom_spss.ko
 qcom_sysmon.ko
 qcom_tsens.ko
-qcom_va_minidump.ko
 qcom_wdt_core.ko
 qdss_bridge.ko
 qfprom-sys.ko
@@ -250,7 +245,6 @@ regmap-spmi.ko
 repeater-i2c-eusb2.ko
 repeater-qti-pmic-eusb2.ko
 repeater.ko
-rimps_log.ko
 rpmh-regulator.ko
 rproc_qcom_common.ko
 rq_stats.ko
@@ -288,7 +282,6 @@ synx-driver.ko
 sysmon_subsystem_stats.ko
 sys_pm_vx.ko
 tcsrcc-kalama.ko
-thermal_minidump.ko
 thermal_pause.ko
 tmecom-intf.ko
 ucsi_glink.ko
