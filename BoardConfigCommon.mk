@@ -88,7 +88,6 @@ BOARD_KERNEL_CMDLINE := \
 
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_USES_GENERIC_KERNEL_IMAGE := true
-TARGET_HAS_GENERIC_KERNEL_HEADERS := true
 
 # Kernel Modules
 BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery))
@@ -132,6 +131,9 @@ TARGET_POWERSHARE_NODE := /sys/class/qcom-battery/reverse_chg_mode
 TARGET_ODM_PROP += $(COMMON_PATH)/configs/properties/odm.prop
 TARGET_SYSTEM_PROP += $(COMMON_PATH)/configs/properties/system.prop
 TARGET_VENDOR_PROP += $(COMMON_PATH)/configs/properties/vendor.prop
+
+# QCOM
+BOARD_USES_QCOM_HARDWARE := true
 
 # Recovery
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true

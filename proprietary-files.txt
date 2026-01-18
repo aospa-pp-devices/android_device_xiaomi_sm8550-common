@@ -1,4 +1,4 @@
-# Unpinned blobs from fuxi_global-user 13 TKQ1.221114.001 V816.0.4.0.UMCMIXM release-keys
+# Device proprietary files - from marble OS2.0.4.0.V# Unpinned blobs from fuxi_global-user 13 TKQ1.221114.001 V816.0.4.0.UMCMIXM release-keys
 
 # ACDB
 vendor/etc/acdbdata/IDP_UPD/IDP_UPD_acdb_cal.acdb
@@ -987,8 +987,8 @@ vendor/etc/init/init.qti.qcv.rc
 vendor/bin/qesdk-manager
 vendor/etc/init/qesdk-manager.rc
 vendor/etc/seccomp_policy/qesdk.policy
-vendor/lib/libqesdk2_0.so;DISABLE_DEPS
-vendor/lib/libqesdk_manager.so;DISABLE_DEPS
+vendor/lib/libqesdk2_0.so;DISABLE_DEPS;MODULE_SUFFIX=_32
+vendor/lib/libqesdk_manager.so;DISABLE_DEPS;MODULE_SUFFIX=_32
 vendor/lib64/libqesdk2_0.so
 vendor/lib64/libqesdk_manager.so
 vendor/lib64/vendor.qti.qesdhal@1.0.so
