@@ -84,6 +84,10 @@ PRODUCT_SHIPPING_API_LEVEL := 33
 PRODUCT_PACKAGES += \
     android.hardware.atrace@1.0-service
 
+# Display
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.display.composer-service
+
 # Audio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_kalama_qssi/audio_policy_configuration.xml
