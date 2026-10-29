@@ -19,8 +19,9 @@ from extract_utils.main import (
 )
 
 namespace_imports = [
+    'hardware/xiaomi',
     'vendor/qcom/common/system/telephony',
-    'vendor/qcom/common/vendor/adreno-t',
+    'vendor/qcom/common/vendor/adreno/t',
     'vendor/qcom/common/vendor/display/5.15',
 ]
 
@@ -50,9 +51,6 @@ lib_fixups: lib_fixups_user_type = {
     ): lib_fixup_odm_suffix,
     (
         'audio.primary.kalama',
-        'libsdm-color',
-        'libsdm-disp-vndapis',
-        'libsdmextension',
     ): lib_fixup_sm8550_suffix,
     (
         'com.qualcomm.qti.dpm.api@1.0',
@@ -177,8 +175,6 @@ lib_fixups: lib_fixups_user_type = {
         'vendor.qti.latency@2.1',
         'vendor.qti.latency@2.2',
         'vendor.qti.latency@2.3',
-        'vendor.xiaomi.hardware.displayfeature@1.0',
-        'vendor.xiaomi.hardware.fingerprintextension@1.0',
     ): lib_fixup_vendor_suffix,
     (
         'libcamxcommonutils',
@@ -187,52 +183,77 @@ lib_fixups: lib_fixups_user_type = {
 }
 
 blob_fixups: blob_fixups_user_type = {
-    'odm/lib64/hw/displayfeature.default.so': blob_fixup()
+    'odm/etc/init/android.hardware.nfc@1.2-service-st.rc': blob_fixup()
+        .regex_replace(
+            'on boot && property:ro.build.version.sdk=35 && property:ro.product.device=ishtar',
+            'on boot && property:ro.hardware.nfc=ST_NFC',
+        )
+        .regex_replace('.+setprop ro.hardware.nfc ST_NFC+\n', ''),
+    (
+        'odm/lib64/libaudioroute_ext.so',
+        'vendor/lib64/libar-pal.so',
+    ): blob_fixup()
+        .replace_needed(
+            'libaudioroute.so',
+            'libaudioroute-v34.so',
+        ),
+    (
+        'odm/lib64/hw/displayfeature.default.so',
+        'vendor/lib64/c2.dolby.hevc.dec.so',
+        'vendor/lib64/c2.dolby.hevc.enc.so',
+        'vendor/lib64/c2.dolby.hevc.sec.dec.so',
+        'vendor/lib64/hw/audio.primary.kalama.so',
+        'vendor/lib64/libcodec2_soft_ac4dec.so',
+        'vendor/lib64/libcodec2_soft_ddpdec.so',
+        'vendor/lib64/libcodec2_soft_mihc_dec.so',
+        'vendor/lib64/libcodec2_soft_mihc_enc.so',
+        'vendor/lib64/libDecoderProcessor.so',
+        'vendor/lib64/libdlbdsservice.so',
+        'vendor/lib64/libdlbpreg.so',
+        'vendor/lib64/libqc2audio_hwaudiocodec.so',
+        'vendor/lib64/libswspatializer_ext.so',
+        'vendor/lib64/soundfx/libdlbvol.so',
+        'vendor/lib64/soundfx/libhwdap.so',
+        'vendor/lib64/soundfx/libmisoundfx.so',
+        'vendor/lib64/soundfx/libswspatializer.so',
+    ): blob_fixup()
         .replace_needed(
             'libstagefright_foundation.so',
             'libstagefright_foundation-v33.so',
-        )
-        .binary_regex_replace(
-            rb"\x30\x00\x00\xD0\x11\x42\x42\xF9\x10\x02\x12\x91\x20\x02\x1F\xD6",
-            b"\xC0\x03\x5F\xD6\x1F\x20\x03\xD5\x1F\x20\x03\xD5\x1F\x20\x03\xD5",
         ),
     'odm/lib64/libmt@1.3.so': blob_fixup()
         .replace_needed(
             'libcrypto.so',
             'libcrypto-v33.so',
         ),
-    (
-    'odm/lib64/hw/vendor.xiaomi.hw.touchfeature@1.0-impl.so',
-    'odm/bin/hw/vendor.xiaomi.hw.touchfeature@1.0-service'
-    ): blob_fixup()
-        .replace_needed('vendor.xiaomi.hw.touchfeature@1.0.so', 'vendor.xiaomi.hw.touchfeature@1.0_vendor.so'),
+    'odm/lib64/nfc_nci.nqx.default.hw.so': blob_fixup()
+        .replace_needed(
+            'libbase.so',
+            'libbase-v33.so'
+        ),
+    'system_ext/framework/mirilhook.jar': blob_fixup()
+        .apktool_patch('blob-patches/mirilhook.patch', '-r'),
+    'vendor/bin/qguard' : blob_fixup()
+        .add_needed('libbase_shim.so'),
     (
         'vendor/bin/hw/android.hardware.security.keymint-service-qti',
         'vendor/lib64/libqtikeymint.so',
     ): blob_fixup()
         .add_needed('android.hardware.security.rkp-V3-ndk.so'),
-    (
-        'vendor/bin/hw/dolbycodec2',
-        'vendor/bin/hw/vendor.dolby.hardware.dms@2.0-service',
-        'vendor/bin/hw/vendor.dolby.media.c2@1.0-service', 
-        'vendor/lib64/hw/audio.primary.kalama.so',
-    ): blob_fixup()
-        .add_needed('libstagefright_foundation-v33.so'),
+    # Viper4AndroidFX routing
     'vendor/etc/audio/sku_kalama/audio_effects.xml': blob_fixup()
         .regex_replace('<libraries>', '<libraries>\n        <library name="v4a_re" path="libv4a_re.so"/>')
         .regex_replace('<effects>', '<effects>\n        <effect name="v4a_standard_re" library="v4a_re" uuid="90380da3-8536-4744-a6a3-5731970e640f"/>'),
     'vendor/etc/seccomp_policy/c2audio.vendor.ext-arm64.policy': blob_fixup()
         .add_line_if_missing('setsockopt: 1'),
-    (
-        'vendor/etc/seccomp_policy/modemManager.policy',
-        'vendor/etc/seccomp_policy/qwesd@2.0.policy',
-        'vendor/etc/seccomp_policy/atfwd@2.0.policy',
-        'vendor/etc/seccomp_policy/wfdhdcphalservice.policy', 
-    ): blob_fixup()
-        .add_line_if_missing('gettid: 1')
+    'vendor/etc/seccomp_policy/qwesd@2.0.policy': blob_fixup()
         .add_line_if_missing('pipe2: 1'),
     'vendor/lib64/c2.dolby.client.so': blob_fixup()
         .add_needed('libcodec2_hidl_shim.so'),
+    'vendor/lib64/libqcodec2_core.so': blob_fixup()
+        .add_needed('libcodec2_shim.so'),
+    'vendor/lib64/libqms_xiaomi.so': blob_fixup()
+        .add_needed('libbinder_shim.so'),
     'vendor/lib64/libsnpe_config.so': blob_fixup()
         .add_needed('liblog.so'),
     'vendor/lib64/vendor.libdpmframework.so': blob_fixup()

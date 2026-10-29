@@ -1,0 +1,55 @@
+From 9fae963132955af85e174bc2a9f78563c2602b7f Mon Aug 24 11:33:00 2026 +0200
+From: Fabian Leutenegger <fabian.leutenegger@bluewin.ch>
+Date: Mon, 24 Aug 2026 11:33:00 +0200
+Subject: [PATCH] Patch MiRilHook to allow its use from com.xiaomi.settings
+
+---
+ smali/com/xiaomi/mirilhook/MiRilHookAidlHyper.smali | 4 ++--
+ smali/com/xiaomi/mirilhook/MiRilHookAidlQcom.smali   | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/smali/com/xiaomi/mirilhook/MiRilHookAidlHyper.smali b/smali/com/xiaomi/mirilhook/MiRilHookAidlHyper.smali
+index 9f57763..ad3f88e 100644
+--- a/smali/com/xiaomi/mirilhook/MiRilHookAidlHyper.smali
++++ b/smali/com/xiaomi/mirilhook/MiRilHookAidlHyper.smali
+@@ -260,7 +260,7 @@
+ 
+     .line 425
+     :cond_0
+-    const-string v4, "com.xiaomi.mtb"
++    const-string v4, "com.xiaomi.settings"
+ 
+     invoke-virtual {v4, v3}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
+ 
+@@ -991,7 +991,7 @@
+     .line 163
+     sget-object v0, Lcom/xiaomi/mirilhook/MiRilHookAidlHyper;->mHookUserWhiteList:Ljava/util/ArrayList;
+ 
+-    const-string v2, "com.xiaomi.mtb"
++    const-string v2, "com.xiaomi.settings"
+ 
+     invoke-virtual {v0, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+ 
+diff --git a/smali/com/xiaomi/mirilhook/MiRilHookAidlQcom.smali b/smali/com/xiaomi/mirilhook/MiRilHookAidlQcom.smali
+index 45cea77..5d56109 100644
+--- a/smali/com/xiaomi/mirilhook/MiRilHookAidlQcom.smali
++++ b/smali/com/xiaomi/mirilhook/MiRilHookAidlQcom.smali
+@@ -335,7 +335,7 @@
+ 
+     .line 833
+     :cond_0
+-    const-string v4, "com.xiaomi.mtb"
++    const-string v4, "com.xiaomi.settings"
+ 
+     invoke-virtual {v4, v3}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
+ 
+@@ -1066,7 +1066,7 @@
+     .line 167
+     sget-object v0, Lcom/xiaomi/mirilhook/MiRilHookAidlQcom;->mHookUserWhiteList:Ljava/util/ArrayList;
+ 
+-    const-string v2, "com.xiaomi.mtb"
++    const-string v2, "com.xiaomi.settings"
+ 
+     invoke-virtual {v0, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+--

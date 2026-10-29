@@ -64,6 +64,7 @@ TARGET_COMMON_QTI_COMPONENTS := \
     av \
     bt \
     display \
+    gps \
     init \
     overlay \
     perf \
@@ -112,7 +113,7 @@ PRODUCT_CHARACTERISTICS := nosdcard
 
 # Consumer IR
 PRODUCT_PACKAGES += \
-    android.hardware.ir-service.example
+    android.hardware.ir-service.xiaomi
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.consumerir.xml
@@ -120,6 +121,10 @@ PRODUCT_COPY_FILES += \
 # Display
 TARGET_PANEL_DIMENSION_HAS_EXTRA_PRECISION := true
 TARGET_USE_YCRCB_CAMERA_ENCODE := true
+
+# Dolby
+PRODUCT_PACKAGES += \
+    XiaomiDolby
 
 # DRM
 PRODUCT_PACKAGES += \

@@ -1,1 +1,0 @@
-allow vendor_modem_manager self:netlink_generic_socket create_socket_perms;
