@@ -1,6 +1,12 @@
 persist.vendor.data.iwlan.enable=true
 
 # Audio
+persist.vendor.audio.misoundasc=true
+persist.vendor.audio.misound.disable=true
+ro.audio.spatializer_enabled=true
+ro.vendor.audio.feature.spatial=7
+ro.vendor.audio.misound.bluetooth.enable=false
+
 ro.audio.monitorRotation=true
 
 # Bluetooth
