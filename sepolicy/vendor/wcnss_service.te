@@ -20,3 +20,5 @@ allow vendor_wcnss_service vendor_modem_data_file:dir { add_name getattr open re
 allow vendor_wcnss_service vendor_modem_data_file:file { append create getattr open read rename setattr unlink write };
 allow vendor_wcnss_service fuse:dir { add_name getattr open read remove_name search setattr write };
 allow vendor_wcnss_service fuse:file { append create getattr open read rename setattr unlink write };
+allow vendor_wcnss_service vendor_persist_bluetooth_file:dir search;
+allow vendor_wcnss_service vendor_persist_bluetooth_file:file r_file_perms;
