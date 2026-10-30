@@ -250,6 +250,29 @@ blob_fixups: blob_fixups_user_type = {
         .add_line_if_missing('pipe2: 1'),
     'vendor/lib64/c2.dolby.client.so': blob_fixup()
         .add_needed('libcodec2_hidl_shim.so'),
+    # The Dolby HEVC blobs allocate a GraphicBuffer-sized object with operator
+    # new right after UnwrapNativeCodec2GrallocHandle and reserve 0x100 bytes
+    # for it.  Current libui writes that object through offset 0xd28, so the
+    # 256-byte allocation overruns the heap and corrupts whatever follows
+    # (binder buffers, HIDL listener lists, the Adreno driver's program
+    # state), crashing dolbycodec2 on the first Dolby Vision metadata frame.
+    # Reserve 0x1000 instead.  The pattern pairs the mov with the following
+    # operator new call to stay unique; c2.dolby.hevc.enc.so also contains an
+    # unrelated "mov w0, #0x100" in C2AndroidMemoryUsage::FromGrallocUsage,
+    # so a bare 4-byte pattern must not be used.
+    'vendor/lib64/c2.dolby.hevc.enc.so': blob_fixup()
+        .binary_regex_replace(
+            b'\x00\x20\x80\x52\x03\x42\x00\x94',
+            b'\x00\x00\x82\x52\x03\x42\x00\x94',
+        ),
+    (
+        'vendor/lib64/c2.dolby.hevc.dec.so',
+        'vendor/lib64/c2.dolby.hevc.sec.dec.so',
+    ): blob_fixup()
+        .binary_regex_replace(
+            b'\x00\x20\x80\x52\x74\x54\x00\x94',
+            b'\x00\x00\x82\x52\x74\x54\x00\x94',
+        ),
     'vendor/lib64/libqcodec2_core.so': blob_fixup()
         .add_needed('libcodec2_shim.so'),
     'vendor/lib64/libqms_xiaomi.so': blob_fixup()
