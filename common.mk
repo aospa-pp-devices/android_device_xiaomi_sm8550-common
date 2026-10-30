@@ -56,6 +56,11 @@ TARGET_BOARD_PLATFORM := kalama
 # Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
+# Audio HAL
+# The 3.0.303 effect libraries are 64-bit only; build the audio HAL service
+# 64-bit so the effect factory looks in vendor/lib64/soundfx.
+$(call soong_config_set,android_hardware_audio,run_64bit,true)
+
 # QTI components
 TARGET_COMMON_QTI_COMPONENTS := \
     adreno \
