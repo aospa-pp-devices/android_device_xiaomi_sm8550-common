@@ -273,6 +273,36 @@ blob_fixups: blob_fixups_user_type = {
             b'\x00\x20\x80\x52\x74\x54\x00\x94',
             b'\x00\x00\x82\x52\x74\x54\x00\x94',
         ),
+    # The Dolby media c2 service binaries allocate the codec2 HAL store object
+    # (android::hardware::media::c2::V1_0::utils::ComponentStore) with operator
+    # new sized by the A16 sizeof (0x108).  The A17 class is larger: the
+    # constructor places the virtual RefBase base at +0x110 and writes past the
+    # 264-byte allocation, corrupting the adjacent heap chunk.  The allocator
+    # then clobbers the RefBase (mRefs becomes null), so the first refcount
+    # operation crashes the service during the framework's early
+    # listComponents()/createInterface() probe.  Reserve 0x1000 instead.  The
+    # pattern pairs the mov with the following operator new call so it stays
+    # unique.
+    'vendor/bin/hw/dolbycodec2': blob_fixup()
+        .binary_regex_replace(
+            b'\x00\x21\x80\x52\xd9\x00\x00\x94',
+            b'\x00\x00\x82\x52\xd9\x00\x00\x94',
+        ),
+    'vendor/bin/hw/vendor.dolby.media.c2@1.0-service': blob_fixup()
+        .binary_regex_replace(
+            b'\x00\x21\x80\x52\xcb\x00\x00\x94',
+            b'\x00\x00\x82\x52\xcb\x00\x00\x94',
+        ),
+    'vendor/bin/hw/vendor.qti.media.c2@1.0-service': blob_fixup()
+        .binary_regex_replace(
+            b'\x00\x21\x80\x52\x8f\x03\x00\x94',
+            b'\x00\x00\x82\x52\x8f\x03\x00\x94',
+        ),
+    'vendor/bin/hw/vendor.qti.media.c2audio@1.0-service': blob_fixup()
+        .binary_regex_replace(
+            b'\x00\x21\x80\x52\x18\x04\x00\x94',
+            b'\x00\x00\x82\x52\x18\x04\x00\x94',
+        ),
     'vendor/lib64/libqcodec2_core.so': blob_fixup()
         .add_needed('libcodec2_shim.so'),
     'vendor/lib64/libqms_xiaomi.so': blob_fixup()
