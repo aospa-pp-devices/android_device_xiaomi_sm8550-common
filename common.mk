@@ -104,7 +104,7 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.2-service
 
 # Camera
-$(call inherit-product-if-exists, vendor/xiaomi/camera/miuicamera.mk)
+$(call inherit-product-if-exists, device/xiaomi/camera/miuicamera.mk)
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.concurrent.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.concurrent.xml \
