@@ -453,6 +453,12 @@ vendor/etc/vintf/manifest/vendor.xiaomi.hardware.displayfeature@1.0-service.xml
 vendor/lib64/hw/vendor.xiaomi.hardware.displayfeature@1.0-impl.so
 vendor/lib64/libdisplayfeature.so
 vendor/lib64/libdisplayfeatureservice.so
+
+# Touchfeature
+odm/bin/hw/vendor.xiaomi.hw.touchfeature@1.0-service
+odm/etc/init/vendor.xiaomi.hw.touchfeature@1.0-service.rc
+odm/etc/vintf/manifest/vendor.xiaomi.hw.touchfeature@1.0-service.xml
+odm/lib64/hw/vendor.xiaomi.hw.touchfeature@1.0-impl.so
 vendor/lib64/libeyecare.so
 vendor/lib64/libmi-stc-HW-modulate.so
 vendor/lib64/libmilut.so
