@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     The QTI workload classifier starts its service from a BOOT_COMPLETED
+     receiver on a background thread.  If the start races past the temporary
+     process state granted for the broadcast, the platform rejects it with
+     BackgroundServiceStartNotAllowedException and the app crashes in a
+     loop until it is killed.  Allowlisting it for power save lifts the
+     background service start restriction.
+-->
+<permissions>
+    <allow-in-power-save package="com.qualcomm.qti.workloadclassifier" />
+</permissions>

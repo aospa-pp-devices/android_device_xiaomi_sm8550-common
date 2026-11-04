@@ -156,6 +156,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml
 
+# QTI Workload Classifier
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/permissions/qti-workloadclassifier.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/qti-workloadclassifier.xml
+
 # Init
 PRODUCT_PACKAGES += \
     fstab.qcom \
