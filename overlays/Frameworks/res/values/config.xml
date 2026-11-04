@@ -112,6 +112,10 @@
     <bool name="config_screen_off_udfps_enabled">true</bool>
     <bool name="config_screen_off_udfps_default_on">true</bool>
 
+    <!-- Use the light sensor to determine the AOD/doze brightness instead of the fixed
+         config_screenBrightnessDoze value. -->
+    <bool name="config_allowAutoBrightnessWhileDozing">true</bool>
+
     <!-- Package names to use with vendor iwlan implementation. -->
     <string name="config_wlan_data_service_package" translatable="false">vendor.qti.iwlan</string>
     <string name="config_wlan_network_service_package" translatable="false">vendor.qti.iwlan</string>
