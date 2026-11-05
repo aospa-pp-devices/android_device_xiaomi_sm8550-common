@@ -15,6 +15,14 @@
     <!-- Enable concurrent Bridged access point (AP) support -->
     <bool translatable="false" name="config_wifiBridgedSoftApSupported">true</bool>
 
+    <!-- Wifi driver supports IEEE80211BE for softap.  The kalama wifi overlay
+         claims BE support, but the vendor hostapd fails to set up a BE AP on
+         the 5.15 kernel: the driver rejects the EHT attributes with an
+         unknown-attribute error, hostapd gives up with "IEEE 802.11 Hardware
+         does not support configured mode" and the hotspot start fails.  Keep
+         the softap at 11ax until the driver actually supports it. -->
+    <bool translatable="false" name="config_wifiSoftapIeee80211beSupported">false</bool>
+
     <!-- Enable concurrent STA + Bridged access point (AP) support -->
     <bool translatable="false" name="config_wifiStaWithBridgedSoftApConcurrencySupported">true</bool>
 
