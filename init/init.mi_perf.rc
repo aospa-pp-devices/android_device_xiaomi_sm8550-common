@@ -3,5 +3,4 @@
 # SPDX-License-Identifier: Apache-2.0
 
 on property:vendor.post_boot.parsed=1
-    # Set default thermal profile
-    write /sys/class/thermal/thermal_message/sconfig 0
+    chmod 0666 /sys/class/thermal/thermal_message/sconfig

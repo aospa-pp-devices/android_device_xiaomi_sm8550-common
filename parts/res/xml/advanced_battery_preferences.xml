@@ -1,1 +1,23 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" />
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/thermal_mode_category_title">
+
+        <com.android.settingslib.widget.SelectorWithWidgetPreference
+            android:key="thermal_mode_default"
+            android:title="@string/thermal_mode_default" />
+
+        <com.android.settingslib.widget.SelectorWithWidgetPreference
+            android:key="thermal_mode_performance"
+            android:title="@string/thermal_mode_performance" />
+
+        <com.android.settingslib.widget.SelectorWithWidgetPreference
+            android:key="thermal_mode_gaming"
+            android:title="@string/thermal_mode_gaming" />
+
+        <com.android.settingslib.widget.SelectorWithWidgetPreference
+            android:key="thermal_mode_powersave"
+            android:title="@string/thermal_mode_battery_saving" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
