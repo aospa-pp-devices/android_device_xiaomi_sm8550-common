@@ -17,4 +17,8 @@
 <resources>
     <!-- App Name -->
     <string name="app_name">Xiaomi Parts</string>
+
+    <!-- Settings entry -->
+    <string name="advanced_settings_title">Advanced</string>
+    <string name="advanced_settings_summary">Thermal profiles, charging control and other advanced battery settings</string>
 </resources>
