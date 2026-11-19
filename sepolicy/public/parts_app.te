@@ -1,0 +1,3 @@
+# XiaomiParts app domain. Declared public so vendor policy can grant it
+# access to vendor resources (e.g. the qcom-battery sysfs nodes).
+type parts_app, domain;

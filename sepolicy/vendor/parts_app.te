@@ -1,0 +1,4 @@
+# XiaomiParts charging control
+allow parts_app vendor_sysfs_qcom_battery:dir search;
+allow parts_app vendor_sysfs_qcom_battery:file rw_file_perms;
+typeattribute vendor_sysfs_qcom_battery mlstrustedobject;

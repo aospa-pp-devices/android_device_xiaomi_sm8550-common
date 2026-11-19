@@ -20,6 +20,7 @@ import android.view.Display.HdrCapabilities;
 
 import com.xiaomi.settings.display.ColorModeService;
 import com.xiaomi.settings.display.DcDimmingService;
+import com.xiaomi.settings.advancedbattery.ChargingControlService;
 import com.xiaomi.settings.advancedbattery.ThermalUtils;
 import com.xiaomi.settings.touch.TouchPollingRateService;
 
@@ -61,6 +62,14 @@ public class BootCompletedReceiver extends BroadcastReceiver {
 
         Log.d(TAG, "Applying thermal mode on boot: " + mode);
         ThermalUtils.setThermalMode(mode);
+
+        // Charging control
+        if (androidx.preference.PreferenceManager
+                .getDefaultSharedPreferences(context)
+                .getBoolean(ChargingControlService.PREF_KEY_ENABLED, false)) {
+            context.startServiceAsUser(new Intent(context, ChargingControlService.class),
+                    UserHandle.CURRENT);
+        }
 
         // Override HDR types to enable Dolby Vision
         final DisplayManager displayManager = context.getSystemService(DisplayManager.class);

@@ -240,6 +240,13 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/lib64/libqtikeymint.so',
     ): blob_fixup()
         .add_needed('android.hardware.security.rkp-V3-ndk.so'),
+    # Keep night_charging writable by the XiaomiParts charging control, which
+    # holds charging at the configured limit (Advanced battery settings)
+    'vendor/etc/init/vendor.xiaomi.hardware.micharge@1.0-service.rc': blob_fixup()
+        .regex_replace(
+            'chmod 0660 /sys/class/qcom-battery/night_charging',
+            'chmod 0666 /sys/class/qcom-battery/night_charging',
+        ),
     # Viper4AndroidFX routing
     'vendor/etc/audio/sku_kalama/audio_effects.xml': blob_fixup()
         .regex_replace('<libraries>', '<libraries>\n        <library name="v4a_re" path="libv4a_re.so"/>')

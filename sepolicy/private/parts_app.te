@@ -1,6 +1,9 @@
-type parts_app, domain;
-
 app_domain(parts_app)
+
+# The app writes uncategorized (s0) sysfs nodes (thermal sconfig, qcom-battery
+# charging control). The MLS write constraint requires the object to be
+# trusted for that, so mark the sysfs types it writes mlstrustedobject.
+typeattribute sysfs_thermal mlstrustedobject;
 
 binder_use(parts_app)
 

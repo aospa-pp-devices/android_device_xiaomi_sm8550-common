@@ -51,6 +51,10 @@
             android:exported="true">
         </service>
 
+        <service
+            android:name=".advancedbattery.ChargingControlService"
+            android:exported="false" />
+
         <activity
             android:name=".advancedbattery.AdvancedBatteryActivity"
             android:exported="true"

@@ -1,4 +1,5 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory android:title="@string/thermal_mode_category_title">
 
@@ -17,6 +18,24 @@
         <com.android.settingslib.widget.SelectorWithWidgetPreference
             android:key="thermal_mode_powersave"
             android:title="@string/thermal_mode_battery_saving" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/charging_limit_category_title">
+
+        <SwitchPreferenceCompat
+            android:key="charging_limit_enabled"
+            android:title="@string/charging_limit_title"
+            android:summary="@string/charging_limit_summary" />
+
+        <SeekBarPreference
+            android:key="charging_limit"
+            android:title="@string/charging_limit_seekbar_title"
+            android:min="50"
+            android:max="100"
+            android:defaultValue="80"
+            app:showSeekBarValue="true"
+            app:updatesContinuously="true" />
 
     </PreferenceCategory>
 

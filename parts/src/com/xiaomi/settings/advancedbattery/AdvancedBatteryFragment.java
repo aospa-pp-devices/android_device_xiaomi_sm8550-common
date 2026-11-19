@@ -1,9 +1,13 @@
 package com.xiaomi.settings.advancedbattery;
 
 import android.os.Bundle;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 import androidx.preference.PreferenceManager;
+import androidx.preference.SeekBarPreference;
+import androidx.preference.SwitchPreferenceCompat;
 
 import com.android.settingslib.widget.SettingsBasePreferenceFragment;
 import com.android.settingslib.widget.SelectorWithWidgetPreference;
@@ -38,6 +42,7 @@ public class AdvancedBatteryFragment extends SettingsBasePreferenceFragment {
         }
 
         restoreSelectedMode();
+        setupChargingControl();
     }
 
     private void onThermalModeSelected(String selectedKey) {
@@ -62,6 +67,45 @@ public class AdvancedBatteryFragment extends SettingsBasePreferenceFragment {
             if (pref != null) {
                 pref.setChecked(entry.getValue() == savedMode);
             }
+        }
+    }
+
+    private void setupChargingControl() {
+        final SwitchPreferenceCompat enabledPref =
+                findPreference(ChargingControlService.PREF_KEY_ENABLED);
+        final SeekBarPreference limitPref =
+                findPreference(ChargingControlService.PREF_KEY_LIMIT);
+        if (enabledPref == null || limitPref == null) {
+            return;
+        }
+
+        updateChargingLimitSummary(limitPref.getValue());
+        limitPref.setEnabled(enabledPref.isChecked());
+
+        enabledPref.setOnPreferenceChangeListener((preference, newValue) -> {
+            final boolean enabled = (Boolean) newValue;
+            final Context context = getContext();
+            if (enabled) {
+                context.startService(new Intent(context, ChargingControlService.class));
+            } else {
+                context.stopService(new Intent(context, ChargingControlService.class));
+                ChargingUtils.setChargingSuspended(false);
+            }
+            limitPref.setEnabled(enabled);
+            return true;
+        });
+
+        limitPref.setOnPreferenceChangeListener((preference, newValue) -> {
+            updateChargingLimitSummary((Integer) newValue);
+            return true;
+        });
+    }
+
+    private void updateChargingLimitSummary(int limit) {
+        final SeekBarPreference limitPref =
+                findPreference(ChargingControlService.PREF_KEY_LIMIT);
+        if (limitPref != null) {
+            limitPref.setSummary(getString(R.string.charging_limit_seekbar_summary, limit));
         }
     }
 }

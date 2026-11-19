@@ -3,3 +3,6 @@ allow init system_file:file mounton;
 allow init vendor_configs_file:dir mounton;
 allow init vendor_file:dir mounton;
 allow init vendor_firmware_file:dir mounton;
+
+# XiaomiParts charging control: keep the input_suspend node writable by the parts app
+allow init vendor_sysfs_qcom_battery:file setattr;
